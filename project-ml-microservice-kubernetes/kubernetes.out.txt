@@ -1,0 +1,7 @@
+deployment.apps/udacity-predict created
+NAME                               READY   STATUS    RESTARTS   AGE
+udacity-predict-75f5c4c8fb-xg7ln   1/1     Running   0          15s
+Forwarding from 0.0.0.0:8000 -> 80
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000

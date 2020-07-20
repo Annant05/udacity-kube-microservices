@@ -1,42 +1,63 @@
-<include a CircleCI status badge, here>
+[![Annant05](https://circleci.com/gh/Annant05/udacity-kube-microservices.svg?style=svg)](https://app.circleci.com/pipelines/gh/Annant05/udacity-kube-microservices)
 
-## Project Overview
+## Operationalize a Machine Learning Microservice API
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+An end to end project that uses Docker and Kubernetes to deploy a simple Machine Learning API.
+ 
+ - Kubernetes
+ - Docker
+ - Makefile
+ - CircleCI
+ - Hadolint
+ - Dockerfile
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
 
 ### Project Tasks
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
+The goal of this project is to operationalize a working, machine learning microservice using kubernetes, which is an open-source system for automating the management of containerized applications. In this project you will:
+
+* Test the project code using linting - Hadolint
 * Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
+* Deploy your containerized application using Docker and make predictions using a running flask API
 * Improve the log statements in the source code for this application
 * Configure Kubernetes and create a Kubernetes cluster
 * Deploy a container using Kubernetes and make a prediction
 * Upload a complete Github repo with CircleCI to indicate that your code has been tested
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+## To Setup the Environment
 
----
+* Clone this repo 
+  ```sh 
+  git clone https://github.com/Annant05/udacity-kube-microservices.git
+  ```
+* Activate a virtual environment 
+  ```sh 
+  make setup
+  ```
+* Installing dependencies via project Makefile
+  ```sh 
+  make install
+  ```
 
-## Setup the Environment
+* Lint Project files with make lint
+  ```sh 
+  make lint
+  ```
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+It is also important to install the following libraries separately
+* Docker - to Containerize your application
+* Hadolint - to Lint the Dockerfile
+* Kubernetes (Minikube) - 
 
-### Running `app.py`
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+## Running Bash Files
+1. ./run_docker.sh - `build` the dockerimage using `Dockerfile` and `run`.
 
-### Kubernetes Steps
+2. ./make_prediction.sh - check if the container is working as expected and running on `port 8000`.
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+3. ./upload_docker.sh - uploads the docker image created in `step 1` to `DockerHub`. Make sure you login to docker in CLI before running the script. 
+
+4. ./run_kubernetes.sh - creates a `kubectl deployment` in kubernetes and then exposes the `application` to outside using `kubectl port-forward`
+
+5. Execute the script in `step 2` to check if the kubernetes deployment is correctly working and exposed on port 8000.
